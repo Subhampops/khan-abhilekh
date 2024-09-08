@@ -4,7 +4,6 @@ import Landing from './components/Landing';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home/Home';
-import Logentry from './components/Home/Logentry';
 import Topbar from './components/Home/Topbar';
 import Shift from './components/Home/Shift';
 import EntryForm from './components/Home/EntryForm';
@@ -18,7 +17,6 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/Logentry" element={<Logentry />} />
       <Route path="/Topbar" element={<Topbar />} />
       <Route path="/Shift" element={<Shift />} />
       <Route path="/entryform" element={<EntryForm />} />

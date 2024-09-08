@@ -26,10 +26,10 @@ const Shift = () => {
                 {/* Top Bar */}
                 <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-                <h2 className="text-2xl font-bold text-center flex-grow mt-16">CHOOSE YOUR SHIFT</h2>
+                <h2 className="text-2xl font-bold text-center flex-grow mt-24">CHOOSE YOUR SHIFT</h2>
 
-                <div className="flex justify-around mt-20">
-                    <Link to="/Logentry">
+                <div className="flex justify-around mt-10">
+                    <Link to="/EntryForm">
                         <button className="bg-black text-white p-5 h-40 w-72 rounded-lg shadow hover:bg-gray-700 transition">
                             <div>First Shift</div>
                             <div className="text-sm mt-2">7:00 A.M to 3:00 P.M</div>
@@ -43,6 +43,15 @@ const Shift = () => {
                         <div>Night Shift</div>
                         <div className="text-sm mt-2">11:00 P.M to 7:00 A.M</div>
                     </button>
+                </div>
+                <h2 className="text-2xl font-bold text-center flex-grow mt-28">DAILY FIRST SHIFT LOG ENTRY</h2>
+
+                <div className="flex justify-around mt-6">
+                    <Link to="/entryform">
+                        <button className="bg-black text-white p-5 rounded-lg shadow hover:bg-gray-700 transition">
+                            <div>SHIFT LOG ENTRY FORM</div>
+                        </button>
+                    </Link>
                 </div>
             </div>
 

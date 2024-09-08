@@ -30,15 +30,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    <Link to="/Shift" className={getLinkClass('/shift-log-entries')}>
                         Shift Log Entries
                     </Link>
                 </li>
-                <li>
-                    <Link to="/Shift" className={getLinkClass('/Shift')}>
-                    Create Shift Log Entry
-                    </Link>
-                </li>
+                
                 <li>
                     <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
                     Hazard Detection and Mapping

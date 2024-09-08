@@ -7,9 +7,6 @@ const EntryForm = () => {
   const navigate = useNavigate();
   const [isChatOpen, setChatOpen] = useState(false);
 
-  const toggleChat = () => {
-    setChatOpen(!isChatOpen);
-  };
 
   // Handle form submission
   const handleSubmit = (event) => {
@@ -153,11 +150,7 @@ const EntryForm = () => {
 
       {/* Chatbot */}
       {isChatOpen && <Chatbot />}
-      <button 
-        onClick={toggleChat} 
-        className="fixed bottom-10 right-10 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors">
-        <ChatIcon />
-      </button>
+      <Chatbot/>
     </div>
   );
 };
