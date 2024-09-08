@@ -13,12 +13,8 @@ import Alerts from './components/Home/Alerts';
 import Raisealert from './components/Home/Raisealert';
 import Notification from './components/Home/Notification';
 import Dashboard from './components/Home/Dashboard';
-<<<<<<< HEAD
-
-=======
 import AlertDetail from './components/Home/AlertDetail'; // Import the new component
 import { AlertProvider } from './components/Home/AlertContext';
->>>>>>> 35b958feb42dfd0045daecf44c1cb3a6f0ee6067
 
 function App() {
   return (
