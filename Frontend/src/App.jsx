@@ -8,6 +8,10 @@ import Topbar from './components/Home/Topbar';
 import Shift from './components/Home/Shift';
 import EntryForm from './components/Home/EntryForm';
 import Entries from './components/Home/Entries';
+import Alerts from './components/Home/Alerts';
+import Raisealert from './components/Home/Raisealert';
+import Notification from './components/Home/Notification';
+
 function App() {
   return (
     <div>
@@ -21,6 +25,10 @@ function App() {
       <Route path="/Shift" element={<Shift />} />
       <Route path="/entryform" element={<EntryForm />} />
       <Route path="/entries" element={<Entries />} />
+      <Route path="/alerts" element={<Alerts />} />
+      <Route path="/raisealert" element={<Raisealert />} />
+      <Route path="/notification" element={<Notification />} />
+      
       </Routes>
       </Router>
       

@@ -6,7 +6,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const location = useLocation();
 
     const getLinkClass = (path) => {
-        return location.pathname === path 
+        return location.pathname === path
             ? 'text-black font-bold'
             : 'text-gray-600 hover:text-black';
     };
@@ -30,39 +30,38 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/Shift" className={getLinkClass('/shift-log-entries')}>
+                    <Link to="/shift" className={getLinkClass('/shift-log-entries')}>
                         Shift Log Entries
                     </Link>
                 </li>
-                
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
-                    Hazard Detection and Mapping
+                    <Link to="/hazard-detection" className={getLinkClass('/hazard-detection')}>
+                        Hazard Detection and Mapping
                     </Link>
                 </li>
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
-                    Compliance Tracking
+                    <Link to="/compliance-tracking" className={getLinkClass('/compliance-tracking')}>
+                        Compliance Tracking
                     </Link>
                 </li>
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
-                    Automated Alerts
+                    <Link to="/alerts" className={getLinkClass('/automated-alerts')}>
+                        Automated Alerts
                     </Link>
                 </li>
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
-                    Predictive Maintenance
+                    <Link to="/predictive-maintenance" className={getLinkClass('/predictive-maintenance')}>
+                        Predictive Maintenance
                     </Link>
                 </li>
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
-                    Risk Analyzer
+                    <Link to="/risk-analyzer" className={getLinkClass('/risk-analyzer')}>
+                        Risk Analyzer
                     </Link>
                 </li>
                 <li>
-                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
-                    Offline Mode
+                    <Link to="/offline-mode" className={getLinkClass('/offline-mode')}>
+                        Offline Mode
                     </Link>
                 </li>
                 {/* Other sidebar items */}
