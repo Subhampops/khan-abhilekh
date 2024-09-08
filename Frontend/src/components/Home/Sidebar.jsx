@@ -34,6 +34,41 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                         Shift Log Entries
                     </Link>
                 </li>
+                <li>
+                    <Link to="/Shift" className={getLinkClass('/Shift')}>
+                    Create Shift Log Entry
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    Hazard Detection and Mapping
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    Compliance Tracking
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    Automated Alerts
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    Predictive Maintenance
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    Risk Analyzer
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/shift-log-entries" className={getLinkClass('/shift-log-entries')}>
+                    Offline Mode
+                    </Link>
+                </li>
                 {/* Other sidebar items */}
             </ul>
         </div>

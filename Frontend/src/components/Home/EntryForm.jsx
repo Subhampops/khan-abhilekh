@@ -1,98 +1,153 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Select, Button, Card, CardHeader, CardBody } from '@shadcn/ui';
-
-const FormField = ({ label, id, children }) => (
-  <div className="mb-4">
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
-      {label}
-    </label>
-    {children}
-  </div>
-);
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowBackIcon, ChatIcon } from "@chakra-ui/icons";
+import Chatbot from "./Chatbot"; // Adjust the import path as needed
 
 const EntryForm = () => {
+  const navigate = useNavigate();
+  const [isChatOpen, setChatOpen] = useState(false);
+
+  const toggleChat = () => {
+    setChatOpen(!isChatOpen);
+  };
+
   return (
-    <div className="flex flex-col items-center mt-10 mb-20">
-      <h1 className="text-3xl font-bold mb-8">SHIFT LOG ENTRY FORM</h1>
-      
-      {/* Existing Fields */}
-      <Card className="w-[28rem] mb-12">
-        <CardHeader>Select Details</CardHeader>
-        <CardBody>
-          <FormField label="Select District" id="district">
-            <Select id="district" options={[{ value: 'district1', label: 'District 1' }, { value: 'district2', label: 'District 2' }]} />
-          </FormField>
-          <FormField label="Select Seam" id="seam">
-            <Select id="seam" options={[{ value: 'seam1', label: 'Seam A' }, { value: 'seam2', label: 'Seam B' }]} />
-          </FormField>
-          <FormField label="Enter Number of P/R Loader" id="prLoader">
-            <Input type="number" id="prLoader" />
-          </FormField>
-          <FormField label="Select Machine" id="machine">
-            <Select id="machine" options={[{ value: 'SDL', label: 'SDL' }, { value: 'LHD', label: 'LHD' }]} />
-          </FormField>
-          <FormField label="Machine Name" id="machineName">
-            <Input type="text" id="machineName" />
-          </FormField>
-        </CardBody>
-      </Card>
+    <div className="min-h-screen bg-gray-50 p-8">
+      {/* Back Button */}
+      <button 
+        onClick={() => navigate(-1)} 
+        className="mb-6 flex items-center bg-transparent text-black hover:bg-black hover:text-white border border-black py-2 px-4 rounded">
+        <ArrowBackIcon className="mr-2" />
+        Back
+      </button>
 
-      {/* Hours Section */}
-      <Card className="w-[28rem] mb-12">
-        <CardHeader>HOURS</CardHeader>
-        <CardBody>
-          <FormField label="WORKING (IN HOURS)" id="workingHours">
-            <Input type="number" id="workingHours" />
-          </FormField>
-          <FormField label="BREAKDOWN (IN HOURS)" id="breakdownHours">
-            <Input type="number" id="breakdownHours" />
-          </FormField>
-          <FormField label="IDLE (IN HOURS)" id="idleHours">
-            <Input type="number" id="idleHours" />
-          </FormField>
-        </CardBody>
-      </Card>
+      {/* Heading */}
+      <h1 className="text-2xl text-center mb-6">SHIFT LOG ENTRY FORM</h1>
 
-      {/* Short Firing Details */}
-      <Card className="w-[28rem] mb-12">
-        <CardHeader>SHORT FIRING DETAILS</CardHeader>
-        <CardBody>
-          <FormField label="Select Face" id="selectFace">
-            <Select id="selectFace" options={[{ value: 'face1', label: 'Face 1' }, { value: 'face2', label: 'Face 2' }]} />
-          </FormField>
-          <FormField label="NUMBER OF HOLE BLASTED" id="holeBlasted">
-            <Input type="number" id="holeBlasted" />
-          </FormField>
-          <FormField label="EXPLOSIVE BLASTED (IN KG)" id="explosiveBlasted">
-            <Input type="number" id="explosiveBlasted" />
-          </FormField>
-        </CardBody>
-      </Card>
+      {/* Form Structure */}
+      <div className="bg-white p-8 mx-40 rounded-lg shadow-lg">
+        <form>
+          {/* Form Fields */}
+          <div className="grid grid-cols-1 gap-4 mb-6">
+            <div className="flex flex-col">
+              <label className="mb-2 font-semibold">Select District</label>
+              <select className="border border-gray-300 p-2 rounded">
+                <option value="">Select District</option>
+                <option value="1">DISTRICT 1</option>
+                <option value="2">DISTRICT 2</option>
+                {/* Add options here */}
+              </select>
+            </div>
 
-      {/* Additional Details */}
-      <Card className="w-[28rem] mb-12">
-        <CardHeader>ADDITIONAL DETAILS</CardHeader>
-        <CardBody>
-          <FormField label="TUB/MINE CAR FACTOR (IN TON)" id="tubFactor">
-            <Input type="number" id="tubFactor" />
-          </FormField>
-          <FormField label="TOTAL PRODUCTION (IN TON)" id="totalProduction">
-            <Input type="number" id="totalProduction" />
-          </FormField>
-          <FormField label="NUMBER OF ROOF BOLTING" id="roofBolting">
-            <Input type="number" id="roofBolting" />
-          </FormField>
-        </CardBody>
-      </Card>
+            <div className="flex flex-col">
+              <label className="mb-2 font-semibold">Select Seam</label>
+              <select className="border border-gray-300 p-2 rounded">
+                <option value="">Select Seam</option>
+                <option value="A">SEAM A</option>
+                <option value="B">SEAM B</option>
+                {/* Add options here */}
+              </select>
+            </div>
 
-      {/* Buttons */}
-      <div className="flex space-x-4">
-        <Link to="/Logentries">
-          <Button variant="outline">Submit</Button>
-        </Link>
-        <Button variant="outline">Add More Entries</Button>
+            <div className="flex flex-col">
+              <label className="mb-2 font-semibold">Enter Number of P/R Loader</label>
+              <input type="number" placeholder="Enter Number of P/R Loader" className="border border-gray-300 p-2 rounded" />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="mb-2 font-semibold">Select Machine</label>
+              <select className="border border-gray-300 p-2 rounded">
+                <option value="">Select Machine</option>
+                <option value="SDL">SDL</option>
+                <option value="LHD">LHD</option>
+                {/* Add options here */}
+              </select>
+            </div>
+
+            <div className="flex flex-col">
+              <label className="mb-2 font-semibold">Machine Name</label>
+              <select className="border border-gray-300 p-2 rounded">
+                <option value="">Select Machine Name</option>
+                <option value="KA-1">KA-1</option>
+                <option value="KA-2">KA-2</option>
+                {/* Add options here */}
+              </select>
+            </div>
+          </div>
+
+          {/* Hours and Short Firing Details */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h2 className="text-lg mb-4">Hours</h2>
+              <div className="flex flex-col mb-4">
+                <label className="mb-2 font-semibold">Working (in Hours)</label>
+                <input type="number" placeholder="Working (in Hours)" className="border border-gray-300 p-2 rounded" />
+              </div>
+              <div className="flex flex-col mb-4">
+                <label className="mb-2 font-semibold">Breakdown (in Hours)</label>
+                <input type="number" placeholder="Breakdown (in Hours)" className="border border-gray-300 p-2 rounded" />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2 font-semibold">Idle (in Hours)</label>
+                <input type="number" placeholder="Idle (in Hours)" className="border border-gray-300 p-2 rounded" />
+              </div>
+            </div>
+            <div>
+              <h2 className="text-lg mb-4">Short Firing Details</h2>
+              <div className="flex flex-col mb-4">
+                <label className="mb-2 font-semibold">Select Face</label>
+                <select className="border border-gray-300 p-2 rounded">
+                  <option value="">Select Face</option>
+                  <option value="1">FACE 1</option>
+                  <option value="2">FACE 2</option>
+                </select>
+              </div>
+              <div className="flex flex-col mb-4">
+                <label className="mb-2 font-semibold">Number of Hole Blasted</label>
+                <input type="number" placeholder="Number of Hole Blasted" className="border border-gray-300 p-2 rounded" />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2 font-semibold">Explosive Blasted (in Kg)</label>
+                <input type="number" placeholder="Explosive Blasted (in Kg)" className="border border-gray-300 p-2 rounded" />
+              </div>
+            </div>
+          </div>
+
+          {/* Tub/Mine Car Factor and Other Details */}
+          <div className="grid grid-cols-1 gap-4 mb-6">
+            <div className="flex flex-col mb-4">
+              <label className="mb-2 font-semibold">Tub/Mine Car Factor (in Ton)</label>
+              <input type="number" placeholder="Tub/Mine Car Factor (in Ton)" className="border border-gray-300 p-2 rounded" />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label className="mb-2 font-semibold">Total Production (in Ton)</label>
+              <input type="number" placeholder="Total Production (in Ton)" className="border border-gray-300 p-2 rounded" />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-2 font-semibold">Number of Roof Bolting</label>
+              <input type="number" placeholder="Number of Roof Bolting" className="border border-gray-300 p-2 rounded" />
+            </div>
+          </div>
+
+          {/* Submit Buttons */}
+          <div className="flex justify-center gap-4">
+            
+            <button 
+              type="submit" 
+              className="bg-transparent text-black hover:bg-black hover:text-white border border-black py-2 px-4 rounded">
+              Submit
+            </button>
+            <button 
+              type="button" 
+              className="bg-transparent text-black hover:bg-black hover:text-white border border-black py-2 px-4 rounded">
+              Add More Entries
+            </button>
+          </div>
+        </form>
       </div>
+
+      {/* Chatbot */}
+      <Chatbot />
     </div>
   );
 };
