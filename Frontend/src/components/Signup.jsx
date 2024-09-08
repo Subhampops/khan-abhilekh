@@ -89,7 +89,7 @@ const Signup = () => {
                 sx={{ height: 50 }} // Increased height
               />
             </Box>
-            <Link to="/Shift">
+            <Link to="/home">
               <Button 
                 type="submit" 
                 variant="contained" 

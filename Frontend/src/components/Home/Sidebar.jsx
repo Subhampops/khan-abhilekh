@@ -1,9 +1,10 @@
 import React from 'react';
+import { IoMdClose } from 'react-icons/io';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const location = useLocation();
-    
+
     const getLinkClass = (path) => {
         return location.pathname === path 
             ? 'text-black font-bold'
@@ -11,7 +12,17 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="w-full md:w-1/4 bg-white p-5 border-r border-gray-200">
+        <div
+            className={`fixed top-0 left-0 h-full w-64 bg-white p-5 shadow-lg z-50 transition-transform duration-300 ${
+                isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
+        >
+            <button
+                onClick={toggleSidebar}
+                className="absolute top-5 right-5 text-2xl"
+            >
+                <IoMdClose />
+            </button>
             <ul className="space-y-4 pt-20">
                 <li>
                     <Link to="/" className={getLinkClass('/')}>
@@ -23,41 +34,7 @@ const Sidebar = () => {
                         Shift Log Entries
                     </Link>
                 </li>
-                <li>
-                    <Link to="/create-shift-log-entry" className={getLinkClass('/create-shift-log-entry')}>
-                        Create Shift Log Entry
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/hazard-detection" className={getLinkClass('/hazard-detection')}>
-                        Hazard Detection and Mapping
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/compliance-tracking" className={getLinkClass('/compliance-tracking')}>
-                        Compliance Tracking
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/automated-alerts" className={getLinkClass('/automated-alerts')}>
-                        Automated Alerts
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/predictive-maintenance" className={getLinkClass('/predictive-maintenance')}>
-                        Predictive Maintenance
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/risk-analyzer" className={getLinkClass('/risk-analyzer')}>
-                        Risk Analyzer
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/offline-mode" className={getLinkClass('/offline-mode')}>
-                        Offline Mode
-                    </Link>
-                </li>
+                {/* Other sidebar items */}
             </ul>
         </div>
     );
