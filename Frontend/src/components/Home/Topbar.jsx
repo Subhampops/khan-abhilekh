@@ -1,8 +1,8 @@
-// Topbar.jsx
 import React from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosNotifications } from 'react-icons/io';
 import { IoMdClose } from 'react-icons/io';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const Topbar = ({ isSidebarOpen, toggleSidebar }) => {
     return (
@@ -24,12 +24,16 @@ const Topbar = ({ isSidebarOpen, toggleSidebar }) => {
 
             <div className="flex items-center space-x-8">
                 {/* Dashboard Button */}
-                <button className="bg-black text-white py-2 px-6 rounded hover:scale-110 transition-transform duration-300">
-                    Dashboard
-                </button>
+                <Link to="/dashboard">
+                    <button className="bg-black text-white py-2 px-6 rounded hover:scale-110 transition-transform duration-300">
+                        Dashboard
+                    </button>
+                </Link>
 
                 {/* Notifications Icon */}
-                <IoIosNotifications className="text-4xl hover:scale-110 transition-transform duration-300" />
+                <Link to="/notification">
+                    <IoIosNotifications className="text-4xl hover:scale-110 transition-transform duration-300" />
+                </Link>
                 
                 {/* Profile Icon */}
                 <img
