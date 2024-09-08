@@ -1,6 +1,19 @@
 import React from 'react';
 
-const Report = () => {
+// Sample Translation Data
+const translations = {
+  en: {
+    heading: "RECENT COAL INDIA REPORTS",
+  },
+  bn: {
+    heading: "সম্প্রতি কয়লা ভারত রিপোর্ট",
+  },
+  hi: {
+    heading: "हाल की कोल इंडिया रिपोर्ट",
+  }
+};
+
+const Report = ({ language }) => {
   // Array of images for the right side
   const rightImages = [
     '/assets/r (1).png',
@@ -9,15 +22,17 @@ const Report = () => {
     '/assets/r (4).png',
   ];
 
+  const t = translations[language]; // Current translations
+
   return (
     <section className="flex flex-col items-center justify-center text-center pt-20 pb-20 bg-black text-white">
       {/* Heading */}
       <h1 className="text-4xl font-semibold mb-10">
-        RECENT COAL INDIA REPORTS
+        {t.heading}
       </h1>
 
       {/* Report Content */}
-      <div className="flex flex-col lg:flex-row items-center justify-center lg:space-x-8 w-full  mx-auto px-6 lg:px-0">
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:space-x-8 w-full mx-auto px-6 lg:px-0">
         {/* Left Image */}
         <div className="flex-shrink-0 w-full lg:w-1/2 mb-8 lg:mb-0">
           <img

@@ -1,6 +1,21 @@
 import React from 'react';
 
-const Features = () => {
+// Sample Translation Data
+const translations = {
+  en: {
+    heading: "FEATURES",
+  },
+  bn: {
+    heading: "বৈশিষ্ট্য",
+  },
+  hi: {
+    heading: "विशेषताएं",
+  }
+};
+
+const Features = ({ language }) => {
+  const t = translations[language]; // Current translations
+
   // Array of image sources
   const images = [
     '/assets/f (1).png',
@@ -17,7 +32,7 @@ const Features = () => {
     <section className="flex flex-col items-center justify-center text-center px-6 py-12 bg-black text-white">
       {/* Heading */}
       <h1 className="text-4xl font-semibold mb-8">
-        FEATURES
+        {t.heading}
       </h1>
 
       {/* Image Grid */}
