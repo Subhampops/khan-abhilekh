@@ -1,7 +1,18 @@
 import React from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend } from 'chart.js';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 import { Bar, Line, Doughnut } from 'react-chartjs-2';
-import { Button, Card, CardHeader, CardContent, CardFooter, Typography, IconButton } from '@shadcn/ui'; // Assuming Shadcn UI components
+import { Button, Card, CardHeader, CardContent, Typography, IconButton } from '@shadcn/ui'; // Assuming Shadcn UI components
 
 // Register required components
 ChartJS.register(

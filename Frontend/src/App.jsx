@@ -11,8 +11,7 @@ import Entries from './components/Home/Entries';
 import Alerts from './components/Home/Alerts';
 import Raisealert from './components/Home/Raisealert';
 import Notification from './components/Home/Notification';
-// import Dashboard from './components/Home/Dashboard';
-
+import Dashboard from './components/Home/Dashboard';
 function App() {
   return (
     <Router>
@@ -29,7 +28,7 @@ function App() {
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/raisealert" element={<Raisealert />} />
           <Route path="/notification" element={<Notification />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
