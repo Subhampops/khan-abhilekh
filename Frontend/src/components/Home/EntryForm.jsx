@@ -11,6 +11,12 @@ const EntryForm = () => {
     setChatOpen(!isChatOpen);
   };
 
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    navigate('/entries'); // Navigate to the Entries page
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       {/* Back Button */}
@@ -26,7 +32,7 @@ const EntryForm = () => {
 
       {/* Form Structure */}
       <div className="bg-white p-8 mx-40 rounded-lg shadow-lg">
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div className="grid grid-cols-1 gap-4 mb-6">
             <div className="flex flex-col">
@@ -131,7 +137,6 @@ const EntryForm = () => {
 
           {/* Submit Buttons */}
           <div className="flex justify-center gap-4">
-            
             <button 
               type="submit" 
               className="bg-transparent text-black hover:bg-black hover:text-white border border-black py-2 px-4 rounded">
@@ -147,7 +152,12 @@ const EntryForm = () => {
       </div>
 
       {/* Chatbot */}
-      <Chatbot />
+      {isChatOpen && <Chatbot />}
+      <button 
+        onClick={toggleChat} 
+        className="fixed bottom-10 right-10 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors">
+        <ChatIcon />
+      </button>
     </div>
   );
 };

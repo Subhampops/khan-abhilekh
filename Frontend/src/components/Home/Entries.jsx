@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Chatbot from './Chatbot';
 
 const Entries = () => {
-  // State to handle sidebar toggle
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-  // Toggle sidebar
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -33,12 +30,12 @@ const Entries = () => {
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col">
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
         {/* Topbar */}
         <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-        <div className="flex-1 p-8">
-          <h2 className="text-2xl font-bold text-center mb-6">SHIFT LOG ENTRIES</h2>
+        <div className="p-8 flex-1">
+          <h2 className="text-2xl font-bold text-center pt-20 mb-6">SHIFT LOG ENTRIES</h2>
 
           {/* Log Entries Table */}
           <div className="mt-8">

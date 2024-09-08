@@ -8,8 +8,7 @@ import Logentry from './components/Home/Logentry';
 import Topbar from './components/Home/Topbar';
 import Shift from './components/Home/Shift';
 import EntryForm from './components/Home/EntryForm';
-// import Entries from './components/Home/Entries';
-
+import Entries from './components/Home/Entries';
 function App() {
   return (
     <div>
@@ -23,7 +22,7 @@ function App() {
       <Route path="/Topbar" element={<Topbar />} />
       <Route path="/Shift" element={<Shift />} />
       <Route path="/entryform" element={<EntryForm />} />
-      {/* <Route path="/entries" element={<Entries />} /> */}
+      <Route path="/entries" element={<Entries />} />
       </Routes>
       </Router>
       
