@@ -25,7 +25,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             </button>
             <ul className="space-y-4 pt-20">
                 <li>
-                    <Link to="/" className={getLinkClass('/')}>
+                    <Link to="/home" className={getLinkClass('/')}>
                         Home
                     </Link>
                 </li>

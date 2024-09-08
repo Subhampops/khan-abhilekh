@@ -11,29 +11,27 @@ import Entries from './components/Home/Entries';
 import Alerts from './components/Home/Alerts';
 import Raisealert from './components/Home/Raisealert';
 import Notification from './components/Home/Notification';
-
+import Dashboard from './components/Home/Dashboard';
 function App() {
   return (
-    <div>
-      <Router>
-      <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/Topbar" element={<Topbar />} />
-      <Route path="/Shift" element={<Shift />} />
-      <Route path="/entryform" element={<EntryForm />} />
-      <Route path="/entries" element={<Entries />} />
-      <Route path="/alerts" element={<Alerts />} />
-      <Route path="/raisealert" element={<Raisealert />} />
-      <Route path="/notification" element={<Notification />} />
-      
-      </Routes>
-      </Router>
-      
-      
-    </div>
+    <Router>
+      <div>
+        <Topbar />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/shift" element={<Shift />} />
+          <Route path="/entryform" element={<EntryForm />} />
+          <Route path="/entries" element={<Entries />} />
+          <Route path="/alerts" element={<Alerts />} />
+          <Route path="/raisealert" element={<Raisealert />} />
+          <Route path="/notification" element={<Notification />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

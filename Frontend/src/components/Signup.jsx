@@ -1,115 +1,101 @@
-import React, { useState } from 'react';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-import { TextField, IconButton, InputAdornment, Button, Typography, Box } from '@mui/material';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+export default function Signup() {
+  const navigate = useNavigate(); // Initialize the navigation hook
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+  // Function to handle sign up
+  const handleSignUp = () => {
+    // Add logic for account creation here
+    navigate('/home'); // Redirect to the home page
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="relative flex items-center right-32">
-        {/* Left Image */}
-        <img 
-          src="/assets/accnt.png" 
-          alt="Account" 
-          className="hidden md:block h-100 lg:h-120 xl:h-148"
-        />
-        {/* Signup Box */}
-        <div className="absolute left-3/4 transform -translate-x-1/2 md:-translate-x-0 w-full max-w-md bg-white p-10 rounded-lg shadow-lg z-10">
-          <Typography variant="h5" component="h2" align="center" gutterBottom>
-            Signup
-          </Typography>
-          <form>
-            <Box mb={4}>
-              <TextField 
-                label="Email" 
-                type="email" 
-                fullWidth 
-                placeholder="Enter your email" 
-                variant="outlined" 
-                size="small"
-                sx={{ height: 50 }} // Increased height
-              />
-            </Box>
-            <Box mb={4} position="relative">
-              <TextField 
-                label="Password" 
-                type={showPassword ? "text" : "password"} 
-                fullWidth 
-                placeholder="Enter your password" 
-                variant="outlined" 
-                size="small"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton 
-                        edge="end" 
-                        onClick={togglePasswordVisibility} 
-                        aria-label="toggle password visibility"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{ height: 50 }} // Increased height
-              />
-            </Box>
-            <Box mb={4} position="relative">
-              <TextField 
-                label="Confirm Password" 
-                type={showConfirmPassword ? "text" : "password"} 
-                fullWidth 
-                placeholder="Confirm your password" 
-                variant="outlined" 
-                size="small"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton 
-                        edge="end" 
-                        onClick={toggleConfirmPasswordVisibility} 
-                        aria-label="toggle confirm password visibility"
-                      >
-                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{ height: 50 }} // Increased height
-              />
-            </Box>
-            <Link to="/home">
-              <Button 
-                type="submit" 
-                variant="contained" 
-                sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: 'gray' } }} // Black color and hover effect
-                fullWidth
-              >
-                Signup
-              </Button>
-            </Link>
-          </form>
+    <div className="flex h-screen w-screen">
+      {/* Left Section with Branding */}
+      <div
+        className="w-1/2 bg-black text-white flex flex-col justify-between bg-cover p-8"
+        style={{ backgroundImage: "url('./assets/accnt.png')" }}
+      >
+        {/* Branding / Logo Section */}
+        <div className="flex items-start">
+          <img src="/assets/logo.png" alt="logo" className="h-16" />
         </div>
       </div>
-      {/* Top Left Logo */}
-      <img 
-        src="/assets/logo2.png" 
-        alt="Logo" 
-        className="absolute top-0 left-0 m-4 h-12"
-      />
+
+      {/* Right Section with Sign Up Form */}
+      <div className="w-1/2 flex flex-col items-center justify-center px-8">
+        <div className="w-full max-w-sm">
+          {/* Heading */}
+          <h1 className="text-3xl font-semibold mb-2">Sign Up</h1>
+          <p className="text-sm text-muted-foreground mb-6">
+            Create a new account by filling out the information below
+          </p>
+
+          {/* Sign Up Form */}
+          <div className="space-y-4">
+            <Input
+              type="text"
+              placeholder="Full Name"
+              className="w-full"
+            />
+            <Input
+              type="text"
+              placeholder="Employee ID"
+              className="w-full"
+            />
+            <Input
+              type="email"
+              placeholder="Email"
+              className="w-full"
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              className="w-full"
+            />
+            <Input
+              type="password"
+              placeholder="Confirm Password"
+              className="w-full"
+            />
+            <Button variant="default" className="w-full" onClick={handleSignUp}>
+              Create Account
+            </Button>
+          </div>
+
+          {/* Redirect to Login */}
+          <div className="mt-4 flex justify-center items-center">
+            <p className="text-sm">Already have an account?</p>
+            <Button
+              variant="link"
+              className="ml-2"
+              onClick={() => navigate('/login')}
+            >
+              Log In
+            </Button>
+          </div>
+          {/* Terms */}
+          <p className="mt-6 text-center text-xs text-muted-foreground">
+            By clicking continue, you agree to our{" "}
+            <a
+              href="/terms"
+              className="underline underline-offset-4 hover:text-primary"
+            >
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a
+              href="/privacy"
+              className="underline underline-offset-4 hover:text-primary"
+            >
+              Privacy Policy
+            </a>
+            .
+          </p>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Signup;
+}

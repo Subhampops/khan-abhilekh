@@ -43,7 +43,8 @@ const Notification = () => {
                             <div className="flex items-center space-x-4">
                                 <p>{alert.date}</p>
                                 <span className="flex items-center space-x-2">
-                                    <span className={`w-4 h-4 rounded-full bg-${alert.color}-500`}></span>
+                                    {/* Colored circle before the alert level */}
+                                    <span className={`w-3 h-3 rounded-full bg-${alert.color}-500`}></span>
                                     <span className="font-semibold">{alert.level}</span>
                                 </span>
                                 <p>{alert.name}</p>
