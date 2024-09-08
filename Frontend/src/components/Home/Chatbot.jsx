@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 
 const Chatbot = () => {
     const [isChatOpen, setIsChatOpen] = useState(false); // State to toggle chatbot visibility
+    const [isExpanded, setIsExpanded] = useState(false); // State to control widget expansion
     const [chatMessages, setChatMessages] = useState([]); // State to hold chat messages
     const [inputValue, setInputValue] = useState(''); // State for the input message
 
     // Toggle chatbot widget visibility
     const toggleChat = () => {
         setIsChatOpen(!isChatOpen);
+    };
+
+    // Toggle widget expansion
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
     };
 
     // Handle input change
@@ -57,9 +63,14 @@ const Chatbot = () => {
 
             {/* Chatbot Widget */}
             {isChatOpen && (
-                <div className="fixed bottom-20 right-10 w-80 h-96 bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col">
+                <div 
+                    className={`fixed bottom-20 right-10 bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col transition-all duration-300 ease-in-out ${isExpanded ? 'w-96 h-128' : 'w-80 h-96'}`}
+                >
                     <div className="flex justify-between items-center p-4 bg-gray-100 border-b border-gray-200">
                         <h3 className="font-semibold text-lg">Chat with our AI ✨</h3>
+                        <button onClick={toggleExpand} className="text-gray-500 hover:text-gray-800">
+                            {isExpanded ? '🔽' : '🔼'}
+                        </button>
                         <button onClick={toggleChat} className="text-gray-500 hover:text-gray-800">
                             ✖
                         </button>

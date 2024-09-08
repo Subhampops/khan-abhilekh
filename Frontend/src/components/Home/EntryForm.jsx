@@ -1,17 +1,49 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowBackIcon, ChatIcon } from "@chakra-ui/icons";
-import Chatbot from "./Chatbot"; // Adjust the import path as needed
+import { ArrowBackIcon } from "@chakra-ui/icons";
+import axios from 'axios'; // Make sure to install axios with `npm install axios`
 
 const EntryForm = () => {
   const navigate = useNavigate();
   const [isChatOpen, setChatOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    district: '',
+    seam: '',
+    prLoader: '',
+    machine: '',
+    machineName: '',
+    workingHours: '',
+    breakdownHours: '',
+    idleHours: '',
+    face: '',
+    numberOfHolesBlasted: '',
+    explosiveBlasted: '',
+    tubMineCarFactor: '',
+    totalProduction: '',
+    numberOfRoofBolting: '',
+  });
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState(''); // 'success' or 'error'
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    navigate('/entries'); // Navigate to the Entries page
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await axios.post('http://localhost:5000/api/shift-log-entry', formData);
+      setMessage('Form submitted successfully!');
+      setMessageType('success');
+      // Optionally, you can navigate after a short delay
+      setTimeout(() => navigate('/entries'), 2000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setMessage('Error submitting form. Please try again.');
+      setMessageType('error');
+    }
   };
 
   return (
@@ -32,9 +64,10 @@ const EntryForm = () => {
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div className="grid grid-cols-1 gap-4 mb-6">
+            {/* Your form fields go here */}
             <div className="flex flex-col">
               <label className="mb-2 font-semibold">Select District</label>
-              <select className="border border-gray-300 p-2 rounded">
+              <select name="district" onChange={handleChange} className="border border-gray-300 p-2 rounded">
                 <option value="">Select District</option>
                 <option value="1">DISTRICT 1</option>
                 <option value="2">DISTRICT 2</option>
@@ -44,7 +77,7 @@ const EntryForm = () => {
 
             <div className="flex flex-col">
               <label className="mb-2 font-semibold">Select Seam</label>
-              <select className="border border-gray-300 p-2 rounded">
+              <select name="seam" onChange={handleChange} className="border border-gray-300 p-2 rounded">
                 <option value="">Select Seam</option>
                 <option value="A">SEAM A</option>
                 <option value="B">SEAM B</option>
@@ -54,12 +87,12 @@ const EntryForm = () => {
 
             <div className="flex flex-col">
               <label className="mb-2 font-semibold">Enter Number of P/R Loader</label>
-              <input type="number" placeholder="Enter Number of P/R Loader" className="border border-gray-300 p-2 rounded" />
+              <input name="prLoader" type="number" placeholder="Enter Number of P/R Loader" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
             </div>
 
             <div className="flex flex-col">
               <label className="mb-2 font-semibold">Select Machine</label>
-              <select className="border border-gray-300 p-2 rounded">
+              <select name="machine" onChange={handleChange} className="border border-gray-300 p-2 rounded">
                 <option value="">Select Machine</option>
                 <option value="SDL">SDL</option>
                 <option value="LHD">LHD</option>
@@ -69,7 +102,7 @@ const EntryForm = () => {
 
             <div className="flex flex-col">
               <label className="mb-2 font-semibold">Machine Name</label>
-              <select className="border border-gray-300 p-2 rounded">
+              <select name="machineName" onChange={handleChange} className="border border-gray-300 p-2 rounded">
                 <option value="">Select Machine Name</option>
                 <option value="KA-1">KA-1</option>
                 <option value="KA-2">KA-2</option>
@@ -84,22 +117,22 @@ const EntryForm = () => {
               <h2 className="text-lg mb-4">Hours</h2>
               <div className="flex flex-col mb-4">
                 <label className="mb-2 font-semibold">Working (in Hours)</label>
-                <input type="number" placeholder="Working (in Hours)" className="border border-gray-300 p-2 rounded" />
+                <input name="workingHours" type="number" placeholder="Working (in Hours)" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
               </div>
               <div className="flex flex-col mb-4">
                 <label className="mb-2 font-semibold">Breakdown (in Hours)</label>
-                <input type="number" placeholder="Breakdown (in Hours)" className="border border-gray-300 p-2 rounded" />
+                <input name="breakdownHours" type="number" placeholder="Breakdown (in Hours)" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
               </div>
               <div className="flex flex-col">
                 <label className="mb-2 font-semibold">Idle (in Hours)</label>
-                <input type="number" placeholder="Idle (in Hours)" className="border border-gray-300 p-2 rounded" />
+                <input name="idleHours" type="number" placeholder="Idle (in Hours)" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
               </div>
             </div>
             <div>
               <h2 className="text-lg mb-4">Short Firing Details</h2>
               <div className="flex flex-col mb-4">
                 <label className="mb-2 font-semibold">Select Face</label>
-                <select className="border border-gray-300 p-2 rounded">
+                <select name="face" onChange={handleChange} className="border border-gray-300 p-2 rounded">
                   <option value="">Select Face</option>
                   <option value="1">FACE 1</option>
                   <option value="2">FACE 2</option>
@@ -107,11 +140,11 @@ const EntryForm = () => {
               </div>
               <div className="flex flex-col mb-4">
                 <label className="mb-2 font-semibold">Number of Hole Blasted</label>
-                <input type="number" placeholder="Number of Hole Blasted" className="border border-gray-300 p-2 rounded" />
+                <input name="numberOfHolesBlasted" type="number" placeholder="Number of Hole Blasted" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
               </div>
               <div className="flex flex-col">
                 <label className="mb-2 font-semibold">Explosive Blasted (in Kg)</label>
-                <input type="number" placeholder="Explosive Blasted (in Kg)" className="border border-gray-300 p-2 rounded" />
+                <input name="explosiveBlasted" type="number" placeholder="Explosive Blasted (in Kg)" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
               </div>
             </div>
           </div>
@@ -120,15 +153,15 @@ const EntryForm = () => {
           <div className="grid grid-cols-1 gap-4 mb-6">
             <div className="flex flex-col mb-4">
               <label className="mb-2 font-semibold">Tub/Mine Car Factor (in Ton)</label>
-              <input type="number" placeholder="Tub/Mine Car Factor (in Ton)" className="border border-gray-300 p-2 rounded" />
+              <input name="tubMineCarFactor" type="number" placeholder="Tub/Mine Car Factor (in Ton)" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
             </div>
             <div className="flex flex-col mb-4">
               <label className="mb-2 font-semibold">Total Production (in Ton)</label>
-              <input type="number" placeholder="Total Production (in Ton)" className="border border-gray-300 p-2 rounded" />
+              <input name="totalProduction" type="number" placeholder="Total Production (in Ton)" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
             </div>
             <div className="flex flex-col">
               <label className="mb-2 font-semibold">Number of Roof Bolting</label>
-              <input type="number" placeholder="Number of Roof Bolting" className="border border-gray-300 p-2 rounded" />
+              <input name="numberOfRoofBolting" type="number" placeholder="Number of Roof Bolting" onChange={handleChange} className="border border-gray-300 p-2 rounded" />
             </div>
           </div>
 
@@ -146,11 +179,17 @@ const EntryForm = () => {
             </button>
           </div>
         </form>
+
+        {/* Message Display */}
+        {message && (
+          <div className={`mt-4 p-4 rounded ${messageType === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+            {message}
+          </div>
+        )}
       </div>
 
       {/* Chatbot */}
       {isChatOpen && <Chatbot />}
-      <Chatbot/>
     </div>
   );
 };
