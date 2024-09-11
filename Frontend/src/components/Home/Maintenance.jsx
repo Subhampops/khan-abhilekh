@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Grid, Card, CardContent, Typography, Table, TableHead, TableBody, TableRow, TableCell, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-
+import Sidebar from './Sidebar';
+import Topbar from "./Topbar";
 // Sample Data
 const equipmentData = [
   { name: "Pump A", status: "Operational", performance: 85 },
@@ -30,6 +31,12 @@ const costData = [
 
 const Maintenance = () => {
   const [realTimeData, setRealTimeData] = useState(equipmentData);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
 
   // Example of fetching data from an API
   useEffect(() => {
@@ -39,7 +46,11 @@ const Maintenance = () => {
 
   return (
     <div className="flex flex-col bg-gray-100 pt-32">
-      {/* Sidebar, Topbar, Chatbot components here */}
+        {/* Sidebar */}
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      
+
       <Container className="flex-1 p-8">
         <Grid container spacing={4}>
           {[

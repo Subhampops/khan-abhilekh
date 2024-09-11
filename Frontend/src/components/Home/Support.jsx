@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from 'react';
 import { Container, Grid, Card, CardContent, Typography, Button, TextField, Divider } from "@mui/material";
 import YouTube from 'react-youtube';
+import Sidebar from "./Sidebar";
 
 const trainingVideos = [
   { id: "dQw4w9WgXcQ", title: "Mine Safety Basics" },
@@ -19,8 +21,17 @@ const articles = [
 ];
 
 const Support = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
   return (
     <div style={{ paddingTop: '102px', paddingBottom: '102px', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
+        {/* Sidebar */}
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <Container>
         {/* Training Videos Section */}
         <Grid container spacing={4} style={{ marginBottom: '40px' }}>
