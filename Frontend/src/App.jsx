@@ -15,6 +15,11 @@ import Notification from './components/Home/Notification';
 import Dashboard from './components/Home/Dashboard';
 import AlertDetail from './components/Home/AlertDetail'; // Import the new component
 import { AlertProvider } from './components/Home/AlertContext';
+import Hazard from './components/Home/Hazard';
+import Tracking from './components/Home/Tracking';
+import Maintenance from './components/Home/Maintenance';
+import Analyzer from './components/Home/Analyzer';
+import Support from './components/Home/Support';
 
 function App() {
   return (
@@ -35,7 +40,12 @@ function App() {
             <Route path="/raisealert" element={<Raisealert />} />
             <Route path="/notification" element={<Notification />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/alert/:id" element={<AlertDetail />} /> {/* Route for alert details */}
+            <Route path="/alert/:id" element={<AlertDetail />} /> 
+            <Route path="/hazard" element={<Hazard />} />
+            <Route path="/tracking" element={<Tracking />} />
+            <Route path="/maintenance" element={<Maintenance />} />
+            <Route path="/analyzer" element={<Analyzer />} />
+            <Route path="/support" element={<Support />} />
           </Routes>
         </div>
       </AlertProvider>

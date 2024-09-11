@@ -1,15 +1,30 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { Link, useLocation } from 'react-router-dom';
+import { FaHome, FaClipboardList, FaExclamationTriangle, FaChartLine, FaBell, FaCogs, FaShieldAlt, FaWifi } from 'react-icons/fa';
+import { GiMiner } from "react-icons/gi";
+
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const location = useLocation();
 
     const getLinkClass = (path) => {
         return location.pathname === path
-            ? 'text-black font-bold'
-            : 'text-gray-600 hover:text-black';
+            ? 'text-black font-bold bg-gray-200'
+            : 'text-gray-600 hover:text-black hover:bg-gray-100';
     };
+
+    const menuItems = [
+        { path: '/home', label: 'Home', icon: <FaHome /> },
+        { path: '/shift', label: 'Shift Log Entries', icon: <FaClipboardList /> },
+        { path: '/hazard', label: 'Hazard Detection', icon: <FaExclamationTriangle /> },
+        { path: '/tracking', label: 'Compliance Tracking', icon: <FaChartLine /> },
+        { path: '/alerts', label: 'Automated Alerts', icon: <FaBell /> },
+        { path: '/maintenance', label: 'Predictive Maintenance', icon: <FaCogs /> },
+        { path: '/analyzer', label: 'Risk Analyzer', icon: <FaShieldAlt /> },
+        { path: '/support', label: 'Training and Support', icon: <GiMiner /> }, 
+        { path: '/offline-mode', label: 'Offline Mode', icon: <FaWifi /> },
+    ];
 
     return (
         <div
@@ -19,52 +34,19 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
         >
             <button
                 onClick={toggleSidebar}
-                className="absolute top-5 right-5 text-2xl"
+                className="absolute top-5 right-5 text-2xl text-gray-600 hover:text-black transition-colors"
             >
                 <IoMdClose />
             </button>
             <ul className="space-y-4 pt-20">
-                <li>
-                    <Link to="/home" className={getLinkClass('/')}>
-                        Home
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/shift" className={getLinkClass('/shift-log-entries')}>
-                        Shift Log Entries
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/hazard-detection" className={getLinkClass('/hazard-detection')}>
-                        Hazard Detection and Mapping
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/compliance-tracking" className={getLinkClass('/compliance-tracking')}>
-                        Compliance Tracking
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/alerts" className={getLinkClass('/automated-alerts')}>
-                        Automated Alerts
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/predictive-maintenance" className={getLinkClass('/predictive-maintenance')}>
-                        Predictive Maintenance
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/risk-analyzer" className={getLinkClass('/risk-analyzer')}>
-                        Risk Analyzer
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/offline-mode" className={getLinkClass('/offline-mode')}>
-                        Offline Mode
-                    </Link>
-                </li>
-                {/* Other sidebar items */}
+                {menuItems.map((item) => (
+                    <li key={item.path}>
+                        <Link to={item.path} className={`flex items-center p-3 rounded-lg transition-colors ${getLinkClass(item.path)}`}>
+                            <span className="mr-3 text-xl">{item.icon}</span>
+                            {item.label}
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </div>
     );

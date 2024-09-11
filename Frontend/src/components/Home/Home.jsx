@@ -3,6 +3,13 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Chatbot from './Chatbot';
+import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
+
+const dataAttendance = [{ name: 'Days Attended', value: 201 }, { name: 'Days Absent', value: 164 }];
+const dataOvertime = [{ name: 'Overtime', value: 34 }, { name: 'Regular', value: 331 }];
+const dataPerformance = [{ name: 'Excellent', value: 80 }, { name: 'Good', value: 20 }];
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const Home = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -13,7 +20,7 @@ const Home = () => {
     };
 
     return (
-        <div className="flex h-screen relative p-10">
+        <div className="flex h-screen relative p-10 bg-gray-50">
             {/* Sidebar */}
             <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
@@ -29,20 +36,104 @@ const Home = () => {
                 {/* Main Content */}
                 <div className="pt-16">
                     <div className="flex flex-col items-center">
-                        {/* Upper div containing profile details */}
-                        <div className="w-full max-w-4xl flex flex-col items-center mb-10 p-6 bg-slate-200 shadow-lg rounded-lg">
-                            <img
-                                src="/assets/p1.png"
-                                alt="profile"
-                                className="w-30 h-30 rounded-full"
-                            />
-                            <h2 className="mt-4 text-xl font-bold">Manish Sharma</h2>
-                            <h3 className="text-sm text-gray-600">Shift Supervisor</h3>
-                            <div className="bg-black text-white max-w-7xl text-sm p-2 mt-3 rounded-md flex justify-center items-center">
-                                <span className="mr-2">• Attendance - 201/365 days</span>
-                                <span className="mr-2">• Overtime Count - 34</span>
-                                <span >• Performance - <span className='text-green-400'>Excellent</span></span>
+                        {/* Upper div containing profile details with graphs */}
+                        <div className="w-full max-w-4xl mb-10 p-6 bg-white shadow-lg rounded-lg">
+                            <div className="flex items-center">
+                                <img
+                                    src="/assets/p1.png"
+                                    alt="profile"
+                                    className="w-20 h-20 rounded-full"
+                                />
+                                <div className="ml-6">
+                                    <h2 className="text-2xl font-bold">Manish Sharma</h2>
+                                    <h3 className="text-sm text-gray-600">Shift Supervisor</h3>
+                                </div>
                             </div>
+                            <div className="grid grid-cols-3 gap-6 mt-6">
+                                {/* Attendance Graph */}
+                                <div>
+                                    <h4 className="text-center font-bold">Attendance</h4>
+                                    <PieChart width={100} height={100}>
+                                        <Pie data={dataAttendance} innerRadius={30} outerRadius={50} fill="#8884d8" dataKey="value">
+                                            {dataAttendance.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip />
+                                    </PieChart>
+                                </div>
+
+                                {/* Overtime Graph */}
+                                <div>
+                                    <h4 className="text-center font-bold">Overtime</h4>
+                                    <PieChart width={100} height={100}>
+                                        <Pie data={dataOvertime} innerRadius={30} outerRadius={50} fill="#8884d8" dataKey="value">
+                                            {dataOvertime.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip />
+                                    </PieChart>
+                                </div>
+
+                                {/* Performance Graph */}
+                                <div>
+                                    <h4 className="text-center font-bold">Performance</h4>
+                                    <BarChart width={100} height={100} data={dataPerformance}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="value" fill="#8884d8" />
+                                    </BarChart>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Shift Log and Alerts Table */}
+                        <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 mb-10">
+                            <h4 className="text-xl font-bold mb-4">Last Shift Log Details</h4>
+                            <table className="min-w-full bg-white">
+                                <thead>
+                                    <tr className="w-full bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                        <th className="py-3 px-6 text-left">Log ID</th>
+                                        <th className="py-3 px-6 text-left">Date</th>
+                                        <th className="py-3 px-6 text-center">Tasks Completed</th>
+                                        <th className="py-3 px-6 text-center">Issues Reported</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-gray-600 text-sm font-light">
+                                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                                        <td className="py-3 px-6 text-left whitespace-nowrap">#001</td>
+                                        <td className="py-3 px-6 text-left">2024-09-10</td>
+                                        <td className="py-3 px-6 text-center">8/10</td>
+                                        <td className="py-3 px-6 text-center">2</td>
+                                    </tr>
+                                    {/* Add more rows as needed */}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 mb-10">
+                            <h4 className="text-xl font-bold mb-4">Upcoming Shift - To Do</h4>
+                            <table className="min-w-full bg-white">
+                                <thead>
+                                    <tr className="w-full bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                        <th className="py-3 px-6 text-left">Task ID</th>
+                                        <th className="py-3 px-6 text-left">Task</th>
+                                        <th className="py-3 px-6 text-center">Priority</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-gray-600 text-sm font-light">
+                                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                                        <td className="py-3 px-6 text-left whitespace-nowrap">#A01</td>
+                                        <td className="py-3 px-6 text-left">Inspect Machinery</td>
+                                        <td className="py-3 px-6 text-center">High</td>
+                                    </tr>
+                                    {/* Add more rows as needed */}
+                                </tbody>
+                            </table>
                         </div>
 
                         {/* Box grid centered */}
@@ -75,8 +166,7 @@ const Home = () => {
                             <img
                                 src="/assets/le6.png"
                                 alt="box6"
-                                className="w-[380px] h-[200px] rounded-lg shadow-lg mb-20 hover:scale-110 transition-transform duration-300"
-                            />
+                                className="w-[380px] h-[200px] rounded-lg shadow-lg mb-20 hover:scale-110 transition-transform duration-300" />
                         </div>
                     </div>
                 </div>
