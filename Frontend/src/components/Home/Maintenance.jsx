@@ -48,9 +48,13 @@ const Maintenance = () => {
     <div className="flex flex-col bg-gray-100 pt-32">
         {/* Sidebar */}
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      
 
+
+      <div className={`flex-1 p-8 relative transition-all duration-300 ${
+                    isSidebarOpen ? 'ml-64' : 'ml-0'
+                }`}>
+
+        <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <Container className="flex-1 p-8">
         <Grid container spacing={4}>
           {[
@@ -251,6 +255,7 @@ const Maintenance = () => {
           ))}
         </Grid>
       </Container>
+      </div>
     </div>
   );
 };
