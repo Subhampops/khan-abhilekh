@@ -3,6 +3,9 @@ import { Container, Grid, Card, CardContent, Typography, Table, TableHead, Table
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import Sidebar from './Sidebar';
+import Topbar from "./Topbar";
+
 
 // Sample Data
 const riskData = [
@@ -32,6 +35,12 @@ const riskScenarios = [
 ];
 
 const Analyzer = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
   const [heatmapData, setHeatmapData] = useState([]);
   const [riskScenariosData, setRiskScenariosData] = useState(riskScenarios);
 
@@ -44,7 +53,12 @@ const Analyzer = () => {
 
   return (
     <div className="flex flex-col bg-gray-200 pt-32 min-h-screen">
-      <Container className="flex-1 p-8">
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={`flex-1 p-8 relative transition-all duration-300 ${
+                    isSidebarOpen ? 'ml-64' : 'ml-0'
+                }`}>
+                    <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+                    <Container className="flex-1 p-8">
         <Grid container spacing={4}>
           {/* Risk Dashboard */}
           <Grid item xs={12} md={6} lg={4}>
@@ -166,6 +180,8 @@ const Analyzer = () => {
           </Grid>
         </Grid>
       </Container>
+                </div>
+      
     </div>
   );
 };

@@ -12,6 +12,10 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar, Line, Doughnut } from 'react-chartjs-2';
+import Sidebar from './Sidebar';
+import Topbar from "./Topbar";
+import { useState } from 'react';
+
 
 // Register required components
 ChartJS.register(
@@ -27,6 +31,12 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
   const barChartData = {
     labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
     datasets: [
@@ -111,19 +121,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <button className="text-gray-600 hover:text-black">
-          <i className="fas fa-arrow-left"></i>
-        </button>
-        <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
-        <div className="flex items-center space-x-4">
-          <img src="/assets/p.png" alt="Profile" className="w-10 h-10 rounded-full cursor-pointer" />
-        </div>
-      </div>
-
-      {/* Dashboard Content */}
+    <div className="p-8 bg-gray-50 min-h-screen pt-32">
+       {/* Sidebar */}
+       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <div className={`flex-1 p-8 relative transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
+          <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+          {/* Dashboard Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Overall Production */}
         <div className="col-span-2">
@@ -219,6 +222,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+        </div>
+      
+
+      
     </div>
   );
 };

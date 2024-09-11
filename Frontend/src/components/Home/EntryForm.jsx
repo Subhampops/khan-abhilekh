@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import axios from 'axios'; // Make sure to install axios with `npm install axios`
+import Sidebar from './Sidebar';
+import Topbar from "./Topbar";
 
 const EntryForm = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
   const navigate = useNavigate();
   const [isChatOpen, setChatOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -47,9 +55,14 @@ const EntryForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-gray-50 p-8 pt-14">
       {/* Back Button */}
-      <button 
+      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={`flex-1 p-8 relative transition-all duration-300 ${
+                    isSidebarOpen ? 'ml-64' : 'ml-0'
+                }`}>
+                  <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+                  <button 
         onClick={() => navigate(-1)} 
         className="mb-6 flex items-center bg-transparent text-black hover:bg-black hover:text-white border border-black py-2 px-4 rounded">
         <ArrowBackIcon className="mr-2" />
@@ -187,6 +200,8 @@ const EntryForm = () => {
           </div>
         )}
       </div>
+                </div>
+      
 
       {/* Chatbot */}
       {isChatOpen && <Chatbot />}
