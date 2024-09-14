@@ -20,6 +20,8 @@ import Tracking from './components/Home/Tracking';
 import Maintenance from './components/Home/Maintenance';
 import Analyzer from './components/Home/Analyzer';
 import Support from './components/Home/Support';
+// import Dailyshift from './components/Home/Dailyshift/Dailyshift';
+// import ShiftDetails from './components/Home/Dailyshift/ShiftDetails';
 
 function App() {
   return (
@@ -46,6 +48,9 @@ function App() {
             <Route path="/maintenance" element={<Maintenance />} />
             <Route path="/analyzer" element={<Analyzer />} />
             <Route path="/support" element={<Support />} />
+            {/* <Route path="/dailyshift" element={<Dailyshift />} />
+            <Route path="/shiftdetails" element={<ShiftDetails />} /> */}
+
           </Routes>
         </div>
       </AlertProvider>
