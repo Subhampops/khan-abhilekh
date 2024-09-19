@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from 'react';
 import { Container, Grid, Card, CardContent, Typography, Button, TextField, Divider } from "@mui/material";
 import YouTube from 'react-youtube';
-import Sidebar from "./Sidebar";
+import Sidebar from './Sidebar';
+import Topbar from "./Topbar";
 
 const trainingVideos = [
   { id: "dQw4w9WgXcQ", title: "Mine Safety Basics" },
@@ -32,7 +33,11 @@ const Support = () => {
     <div style={{ paddingTop: '102px', paddingBottom: '102px', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
         {/* Sidebar */}
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <Container>
+        <div className={`flex-1 p-8 relative transition-all duration-300 ${
+                    isSidebarOpen ? 'ml-64' : 'ml-0'
+                }`}>
+                    <Topbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+                    <Container>
         {/* Training Videos Section */}
         <Grid container spacing={4} style={{ marginBottom: '40px' }}>
           <Grid item xs={12}>
@@ -124,6 +129,8 @@ const Support = () => {
           </Grid>
         </Grid>
       </Container>
+                </div>
+      
     </div>
   );
 };
