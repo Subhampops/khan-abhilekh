@@ -5,8 +5,8 @@ import Chatbot from './Chatbot';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import 'chartjs-adapter-date-fns';
-import CalendarHeatmap from 'react-calendar-heatmap';
-import 'react-calendar-heatmap/dist/styles.css';
+import CalendarHeatmap from "react-calendar-heatmap";
+import "react-calendar-heatmap/dist/styles.css";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
