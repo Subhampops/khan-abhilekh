@@ -6,14 +6,17 @@ const translations = {
   en: {
     login: "Login",
     signup: "Signup",
+    enterApp: "Enter App", // New translation
   },
   bn: {
     login: "লগইন",
     signup: "সাইন আপ",
+    enterApp: "অ্যাপে প্রবেশ করুন", // New translation
   },
   hi: {
     login: "लॉगिन",
     signup: "साइनअप",
+    enterApp: "ऐप दर्ज करें", // New translation
   }
 };
 
@@ -57,6 +60,12 @@ const Navbar = ({ language, onLanguageChange }) => {
               <Link to="/signup">
                 <button className="border border-white text-white px-10 py-2 rounded-md transition-colors duration-300 hover:bg-white hover:text-black">
                   {t.signup}
+                </button>
+              </Link>
+              {/* Enter App Button */}
+              <Link to="/enter">
+                <button className="border border-white text-white px-10 py-2 rounded-md transition-colors duration-300 hover:bg-white hover:text-black">
+                  {t.enterApp}
                 </button>
               </Link>
             </div>
