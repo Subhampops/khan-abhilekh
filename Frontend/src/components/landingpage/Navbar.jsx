@@ -63,7 +63,7 @@ const Navbar = ({ language, onLanguageChange }) => {
                 </button>
               </Link>
               {/* Enter App Button */}
-              <Link to="/enter">
+              <Link to="/home">
                 <button className="border border-white text-white px-10 py-2 rounded-md transition-colors duration-300 hover:bg-white hover:text-black">
                   {t.enterApp}
                 </button>
