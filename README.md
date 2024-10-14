@@ -104,16 +104,36 @@ First, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/arpitasen20/khan-abhilekh
-cd project-directory
+cd khan-abhilekh
 ```
 
-# Set Up PostgreSQL Database
+```bash
+cd frontend
+```
+
+```bash
+npm install
+```
+```bash
+npm run dev
+```
+This setsup and starts the frontend UI of our application
+
+# Set Up Backend Server
+
+```bash
+cd server
+```
+```bash
+npm install
+```
+```bash
+node server.js
+```
+This setups the server on our localhost
+
+It uses keys and data from a .env file that needs to be setup for the working of the project
+
 ## Open PostgreSQL and create a new database for the project.
+A postgreSQL database have to be created and its id and other informations need to be used to access it on local system.
 
-
-
-## Video Demo
-
-Check out the full demonstration of the system here:
-
-[![YouTube Video](path/to/your/youtube-thumbnail.png)](https://www.youtube.com/watch?v=your-video-link)
