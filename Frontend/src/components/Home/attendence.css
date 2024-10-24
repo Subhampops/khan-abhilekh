@@ -1,0 +1,16 @@
+.react-calendar-heatmap .color-empty {
+    fill: #f0ebeb; /* Light grey for empty */
+  }
+  .react-calendar-heatmap .color-scale-1 {
+    fill: #1ae000; /* Light green */
+  }
+  .react-calendar-heatmap .color-scale-2 {
+    fill: #ffb14c; /* Medium green */
+  }
+  .react-calendar-heatmap .color-scale-3 {
+    fill: #ff453f; /* Dark green */
+  }
+  .react-calendar-heatmap .color-scale-4 {
+    fill: #1e6823; /* Darkest green */
+  }
+  

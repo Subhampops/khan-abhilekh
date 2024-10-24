@@ -7,6 +7,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import 'chartjs-adapter-date-fns';
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
+import './attendence.css'; 
+
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -42,18 +44,37 @@ responsive: true,
 maintainAspectRatio: false,
 };
 
-// Generate full year data for the attendance heatmap
-const generateFullYearData = () => {
-const data = [];
-for (let i = 1; i <= 366; i++) {
-const date = new Date(2024, 0, i);
-const type = ['present', 'absent', 'overtime'][Math.floor(Math.random() * 3)];
-data.push({ date: date.toISOString().split('T')[0], count: Math.floor(Math.random() * 5), type });
-}
-return data;
-};
+// // Generate full year data for the attendance heatmap
+// const generateFullYearData = () => {
+// const data = [];
+// for (let i = 1; i <= 366; i++) {
+// const date = new Date(2024, 0, i);
+// const type = ['present', 'absent', 'overtime'][Math.floor(Math.random() * 3)];
+// data.push({ date: date.toISOString().split('T')[0], count: Math.floor(Math.random() * 5), type });
+// }
+// return data;
+// };
 
-const attendanceData = generateFullYearData();
+// const attendanceData = generateFullYearData();
+
+
+// Automated but consistent attendance data generation
+const generateFixedAttendanceData = () => {
+    const data = [];
+    const types = ['present', 'absent', 'overtime']; // Predefined pattern of attendance types
+  
+    for (let i = 1; i <= 366; i++) {
+      const date = new Date(2024, 0, i);
+      const type = types[i % types.length]; // Cycle through present, absent, overtime
+      const count = type === 'present' ? 1 : (type === 'absent' ? 0 : 2); // Consistent count based on type
+  
+      data.push({ date: date.toISOString().split('T')[0], count, type });
+    }
+    return data;
+  };
+  
+  const attendanceData = generateFixedAttendanceData();
+
 
 const colors = {
 present: 'bg-green-500',
@@ -62,9 +83,13 @@ overtime: 'bg-yellow-500',
 };
 
 const getClassForValue = (value) => {
-if (!value) return 'color-empty';
-return colors[value.type] || 'bg-gray-200';
-};
+    if (!value) return 'color-empty';  // Empty state
+    if (value.count >= 4) return 'color-scale-1';  // Darkest green
+    if (value.count === 1) return 'color-scale-1';  // Dark green
+    if (value.count === 2) return 'color-scale-2';  // Medium green
+    return 'color-scale-3';  // Light green
+  };
+  
 
 // Filtered data based on selected filter
 const filteredAttendanceData = attendanceData.filter(item => selectedFilter === 'all' || item.type === selectedFilter);
