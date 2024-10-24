@@ -6,14 +6,17 @@ const translations = {
   en: {
     login: "Login",
     signup: "Signup",
+    enterApp: "Enter App",
   },
   bn: {
     login: "লগইন",
     signup: "সাইন আপ",
+    enterApp: "অ্যাপে প্রবেশ করুন",
   },
   hi: {
     login: "लॉगिन",
     signup: "साइनअप",
+    enterApp: "ऐप दर्ज करें",
   }
 };
 
@@ -21,8 +24,8 @@ const Navbar = ({ language, onLanguageChange }) => {
   const t = translations[language]; // Current translations
 
   return (
-    <nav className="bg-black text-white sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-black text-white sticky top-0 z-50 w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
@@ -32,7 +35,7 @@ const Navbar = ({ language, onLanguageChange }) => {
               className="h-12 w-auto"
             />
           </div>
-          
+
           <div className="flex items-center space-x-8">
             {/* Language Dropdown */}
             <div className="ml-4">
@@ -57,6 +60,12 @@ const Navbar = ({ language, onLanguageChange }) => {
               <Link to="/signup">
                 <button className="border border-white text-white px-10 py-2 rounded-md transition-colors duration-300 hover:bg-white hover:text-black">
                   {t.signup}
+                </button>
+              </Link>
+              {/* Enter App Button */}
+              <Link to="/home">
+                <button className="border border-white text-white px-10 py-2 rounded-md transition-colors duration-300 hover:bg-white hover:text-black">
+                  {t.enterApp}
                 </button>
               </Link>
             </div>
