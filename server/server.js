@@ -55,7 +55,6 @@ app.post('/api/shift-log-entry', async (req, res) => {
   const {
     district,
     seam,
-    numberOfLoader, // Updated to match the column name in the table
     machine,
     machineName,
     workingHours,
@@ -71,14 +70,18 @@ app.post('/api/shift-log-entry', async (req, res) => {
 
   try {
     const query = `
-      INSERT INTO shift_log_entries (district, seam, number_of_loader, machine, machine_name, working_hours, breakdown_hours, idle_hours, face, number_of_holes_blasted, explosive_blasted, tub_mine_car_factor, total_production, number_of_roof_bolting)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+      INSERT INTO shift_log_entries (
+  district, seam, machine, machine_name, working_hours, breakdown_hours, idle_hours, face, 
+  number_of_holes_blasted, explosive_blasted, tub_mine_car_factor, total_production, 
+  number_of_roof_bolting
+) 
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+
     `;
 
     await pool.query(query, [
       district,
       seam,
-      numberOfLoader,
       machine,
       machineName,
       workingHours,
@@ -90,7 +93,7 @@ app.post('/api/shift-log-entry', async (req, res) => {
       tubMineCarFactor,
       totalProduction,
       numberOfRoofBolting,
-    ]);
+    ]); 
 
     res.status(200).send({ success: true });
   } catch (error) {
